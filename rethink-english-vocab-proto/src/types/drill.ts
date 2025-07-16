@@ -3,6 +3,7 @@ import { WordNode } from './index';
 export type DrillType = 
   | 'definition-matching'
   | 'word-recall'
+  | 'multiple-choice'
   | 'audio-recognition'
   | 'fill-in-blank'
   | 'sentence-creation'

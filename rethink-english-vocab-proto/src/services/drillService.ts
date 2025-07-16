@@ -32,6 +32,8 @@ export class DrillService {
         return words.map(word => this.generateDefinitionQuestion(word, words));
       case 'word-recall':
         return words.map(word => this.generateWordRecallQuestion(word));
+      case 'multiple-choice':
+        return words.map(word => this.generateMultipleChoiceQuestion(word, words));
       case 'fill-in-blank':
         return words.map(word => this.generateFillInBlankQuestion(word, words));
       default:
@@ -70,6 +72,28 @@ export class DrillService {
       type: 'word-recall',
       targetWord,
       correctAnswer: targetWord.word
+    };
+  }
+
+  /**
+   * 객관식 질문 생성
+   */
+  static generateMultipleChoiceQuestion(
+    targetWord: WordNode,
+    allWords: WordNode[]
+  ): DrillQuestion {
+    const distractors = this.getDistractors(targetWord, allWords, 3);
+    const options = this.shuffleArray([
+      targetWord.definition,
+      ...distractors.map(w => w.definition)
+    ]);
+    
+    return {
+      id: `mc_${targetWord.id}_${Date.now()}`,
+      type: 'multiple-choice',
+      targetWord,
+      options,
+      correctAnswer: targetWord.definition
     };
   }
 

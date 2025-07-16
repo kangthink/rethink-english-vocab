@@ -6,6 +6,7 @@ import { DrillService } from '../../services/drillService';
 import DefinitionMatching from './DefinitionMatching';
 import WordRecall from './WordRecall';
 import FillInBlank from './FillInBlank';
+import MultipleChoice from './MultipleChoice';
 
 const DrillInterface = styled.div`
   min-height: 500px;
@@ -248,6 +249,11 @@ const DrillContainer: React.FC<DrillContainerProps> = ({ availableWords }) => {
       description: '정의를 보고 단어 직접 입력'
     },
     {
+      type: 'multiple-choice' as DrillType,
+      title: '객관식 문제',
+      description: '단어를 보고 정의 선택하기'
+    },
+    {
       type: 'fill-in-blank' as DrillType,
       title: '빈칸 채우기',
       description: '예문의 빈칸에 알맞은 단어 넣기'
@@ -390,6 +396,13 @@ const DrillContainer: React.FC<DrillContainerProps> = ({ availableWords }) => {
 
         {selectedDrillType === 'word-recall' && (
           <WordRecall 
+            question={currentQuestion} 
+            onAnswer={handleAnswer}
+          />
+        )}
+
+        {selectedDrillType === 'multiple-choice' && (
+          <MultipleChoice 
             question={currentQuestion} 
             onAnswer={handleAnswer}
           />

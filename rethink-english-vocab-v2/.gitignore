@@ -1,0 +1,11 @@
+# sveltekit
+.svelte-kit
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# bun
+bun.lockb
+bun.lock
