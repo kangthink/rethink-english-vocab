@@ -9,3 +9,13 @@
 # bun
 bun.lockb
 bun.lock
+
+# node
+node_modules
+
+# vite
+dist
+
+# svelte
+svelte-kit.d.ts
+svelte-kit.d.ts.map
